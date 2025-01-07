@@ -4,6 +4,7 @@ TextureManager::TextureManager() : textures() {}
 
 Texture &TextureManager::tex(const std::string &name) {
   if (textures.find(name) == textures.end()) {
+    std::cout << "loading texture " << name << std::endl;
     textures[name] = CreateTex2D(TEXTURE_PATH + name);
   } else {
     std::cout << "Using cached texture " << name << std::endl;

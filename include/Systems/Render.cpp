@@ -1,9 +1,11 @@
 #include "Render.h"
 
 void Render(const Mesh &mesh, const Material &material,
-            const Transform &transform) {
+            const Transform &transform, const Camera &camera) {
 
   material.shader.use();
+  material.shader.setMat4("view", camera.viewMatrix);
+  material.shader.setMat4("projection", camera.projectionMatrix);
   glBindVertexArray(mesh.VAO);
   int modelLoc = glGetUniformLocation(material.shader.id, "model");
   glm::mat4 modelMatrix = transform.getLocalMat4();

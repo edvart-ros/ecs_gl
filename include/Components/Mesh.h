@@ -10,5 +10,6 @@ struct Mesh {
   std::vector<unsigned int> indices;
   unsigned int VAO, VBO, EBO;
 
+  Mesh();
   Mesh(std::vector<Vertex>, std::vector<unsigned int> indices);
 };

@@ -10,14 +10,15 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 file(GLOB_RECURSE SOURCES
     ${CMAKE_SOURCE_DIR}/main.cpp
+    ${CMAKE_SOURCE_DIR}/include/Components/Vertex.cpp
     ${CMAKE_SOURCE_DIR}/include/Defines.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Window.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Time.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Path.cpp
+    ${CMAKE_SOURCE_DIR}/include/Core/MeshImporter.cpp
     ${CMAKE_SOURCE_DIR}/include/Logging/Logging.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Primitives.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/TextureManager.cpp
-    ${CMAKE_SOURCE_DIR}/include/Components/Vertex.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Shader.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Mesh.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Material.cpp
@@ -26,7 +27,7 @@ file(GLOB_RECURSE SOURCES
     ${CMAKE_SOURCE_DIR}/include/Systems/Render.cpp
     ${CMAKE_SOURCE_DIR}/include/Math/Geometry.cpp
     ${CMAKE_SOURCE_DIR}/include/Input/Input.cpp
-    ${CMAKE_SOURCE_DIR}/include/Rendering/Camera.cpp
+    ${CMAKE_SOURCE_DIR}/include/Rendering/Camera/Camera.cpp
 )
 
 # Add the executable
