@@ -7,10 +7,10 @@
 #include "Core/TextureManager.h"
 #include "Core/Time.h"
 #include "Core/Window.h"
-#include "External/entt/src/entt/entt.hpp"
 #include "Input/Input.h"
 #include "Rendering/Camera/Camera.h"
 #include "Systems/Render.h"
+#include "entt/src/entt/entt.hpp"
 
 GLFWwindow *window = setupWindow(1200, 900);
 float deltaTime = 0;
@@ -19,13 +19,14 @@ Mouse mouse = Mouse();
 Keys keys = Keys();
 TextureManager texMan;
 Camera camera;
-Shader shader("simple");
 
 int main() {
+  Shader shader("simple");
   Material material(shader);
   Mesh box = createBox();
   Mesh mesh = loadMesh("sphere.obj");
   Transform transform;
+  entt::registry reg;
 
   while (!glfwWindowShouldClose(window)) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

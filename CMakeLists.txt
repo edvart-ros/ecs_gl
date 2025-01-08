@@ -8,7 +8,23 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-file(GLOB_RECURSE SOURCES
+# Assimp configuration
+set(ASSIMP_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ALL_EXPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
+set(ASSIMP_NO_EXPORT ON CACHE BOOL "" FORCE)
+set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
+
+set(ASSIMP_BUILD_OBJ_IMPORTER ON CACHE BOOL "" FORCE)
+
+# Add assimp before defining your sources
+add_subdirectory(third-party/assimp)
+
+# Define sources explicitly to avoid picking up third-party files
+set(SOURCES
     ${CMAKE_SOURCE_DIR}/main.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Vertex.cpp
     ${CMAKE_SOURCE_DIR}/include/Defines.cpp
@@ -33,21 +49,17 @@ file(GLOB_RECURSE SOURCES
 # Add the executable
 add_executable(main ${SOURCES})
 
-# Link libraries
+# Find required packages
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glfw3 REQUIRED)
-set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/assimp-5.4" ${CMAKE_PREFIX_PATH})
-
-find_package(ASSIMP REQUIRED)
 
 target_link_libraries(main PRIVATE
     ${OPENGL_gl_LIBRARY}
     GLEW::GLEW
     glfw
-    /usr/local/lib/libassimp.dylib
+    assimp::assimp
 )
-
 
 include_directories(/opt/homebrew/include)
 link_directories(/opt/homebrew/lib)
