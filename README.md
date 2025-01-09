@@ -1,3 +1,3 @@
-cmake -S . -B build -G Ninja
+cmake . -B build
 cmake --build build
 ./build/bin/main
