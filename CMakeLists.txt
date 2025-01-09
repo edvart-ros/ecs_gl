@@ -5,21 +5,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
 include_directories(${CMAKE_SOURCE_DIR}/include)
+link_directories(${CMAKE_SOURCE_DIR}/lib)
 
-set(ASSIMP_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_ALL_EXPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
-set(ASSIMP_NO_EXPORT ON CACHE BOOL "" FORCE)
-set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
-
-set(ASSIMP_BUILD_OBJ_IMPORTER ON CACHE BOOL "" FORCE)
-
-add_subdirectory(third-party/assimp)
 
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/main.cpp
@@ -43,20 +31,17 @@ set(SOURCES
     ${CMAKE_SOURCE_DIR}/include/Rendering/Camera/Camera.cpp
 )
 
-# Add the executable
 add_executable(main ${SOURCES})
 
-# Find required packages
 find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
-find_package(glfw3 REQUIRED)
+find_package(ZLIB REQUIRED)
 
-target_link_libraries(main PRIVATE
+target_link_libraries(main 
     ${OPENGL_gl_LIBRARY}
-    GLEW::GLEW
-    glfw
-    assimp::assimp
+    glfw3
+    glew
+    assimp
+    ZLIB::ZLIB
 )
 
-include_directories(/opt/homebrew/include)
-link_directories(/opt/homebrew/lib)
+target_link_libraries(main "-framework Cocoa" "-framework OpenGL" "-framework IOKit" "-framework CoreFoundation" "-framework CoreGraphics")
