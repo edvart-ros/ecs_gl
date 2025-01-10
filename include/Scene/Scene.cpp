@@ -18,7 +18,7 @@ Scene::Scene() {
     auto ball = registry.create();
     Shader &shader = shaderMan.shader("simple");
     Material material(shader);
-    Mesh mesh = meshMan.mesh("cube.obj");
+    Mesh &mesh = meshMan.mesh("cube.obj");
     Transform transform;
     transform.position.y = -10 + i * 2;
     material.textures.diffuse = texMan.tex("uvChecker.png");
@@ -52,6 +52,7 @@ void Scene::render() {
     auto &tf = renderableView.get<Transform>(entity);
     auto &mat = renderableView.get<Material>(entity);
     auto &mesh = renderableView.get<Mesh>(entity);
+    tf.setRotation(glfwGetTime(), 0, 0);
     Render(mesh, mat, tf, camera);
   }
   auto namedView = registry.view<Name, Transform>();
@@ -63,7 +64,6 @@ void Scene::render() {
       tf.position.x = sin(time);
       tf.position.z = cos(time);
       tf.position.y = 0.3f * cos(time);
-      tf.setRotation(time, 0, 0);
       camera.target = tf.position;
     }
   }
