@@ -12,7 +12,6 @@ uniform mat4 projection;
 
 void main()
 {
-    // normal = aNormal;
     uv = aUv; 
     mat3 normalMatrix = mat3(transpose(inverse(view * model)));
     normal = normalMatrix * aNormal;

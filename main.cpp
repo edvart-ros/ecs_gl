@@ -34,7 +34,7 @@ int main() {
     camera.update(keys, mouse);
     shaderMan.hotReload();
 
-    scene.RenderScene();
+    scene.update();
     processInputs(window, keys);
     glfwSwapBuffers(window);
     glfwPollEvents();

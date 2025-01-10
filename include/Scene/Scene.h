@@ -12,11 +12,16 @@
 #include "entt/src/entt/entity/fwd.hpp"
 #include "entt/src/entt/entt.hpp"
 
+struct Name {
+  std::string name;
+};
+
 class Scene {
 public:
   Scene();
   entt::registry registry;
-  void RenderScene();
+  void update();
 
 private:
+  void render();
 };
