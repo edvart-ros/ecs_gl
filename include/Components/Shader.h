@@ -16,4 +16,5 @@ unsigned int createVertexShader(const std::string &shaderSource);
 unsigned int createFragmentShader(const std::string &shaderSource);
 unsigned int createShaderProgram(unsigned int vertexShader,
                                  unsigned int fragmentShader);
+unsigned int createShaderProgramFromName(const std::string &shaderName);
 std::string parseShaderFile(const std::string &path);

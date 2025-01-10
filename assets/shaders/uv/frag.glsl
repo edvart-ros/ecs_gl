@@ -10,7 +10,6 @@ in vec4 wPos;
 out vec4 FragColor;
 
 void main() {
-    FragColor = texture(specularMap, uv);
-    FragColor = texture(diffuseMap, uv);
-    FragColor = vec4(1.0, 0.5, 0.3, 1.0);
+    FragColor = vec4(uv.x, uv.y, 0.0, 1.0);
+    FragColor = vec4(normal, 1.0);
 }   

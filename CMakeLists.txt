@@ -11,15 +11,18 @@ link_directories(${CMAKE_SOURCE_DIR}/lib)
 
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/main.cpp
+    ${CMAKE_SOURCE_DIR}/include/Logging/Logging.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Vertex.cpp
     ${CMAKE_SOURCE_DIR}/include/Defines.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Window.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Time.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Path.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/MeshImporter.cpp
-    ${CMAKE_SOURCE_DIR}/include/Logging/Logging.cpp
+    ${CMAKE_SOURCE_DIR}/include/Core/ShaderManager.cpp
+    ${CMAKE_SOURCE_DIR}/include/Core/MeshManager.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/Primitives.cpp
     ${CMAKE_SOURCE_DIR}/include/Core/TextureManager.cpp
+    ${CMAKE_SOURCE_DIR}/include/Scene/Scene.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Shader.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Mesh.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Material.cpp

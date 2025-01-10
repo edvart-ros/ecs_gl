@@ -13,3 +13,5 @@ public:
 private:
   std::unordered_map<std::string, Texture> textures;
 };
+
+extern TextureManager texMan;

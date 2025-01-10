@@ -1,14 +1,8 @@
 #include "Shader.h"
 
-Shader::Shader() : id(0) {};
+Shader::Shader() : id(0){};
 Shader::Shader(const std::string &shaderName) {
-  std::string vertShaderPath = SHADER_PATH + shaderName + "/vert.glsl";
-  std::string fragShaderPath = SHADER_PATH + shaderName + "/frag.glsl";
-  std::string vertCode = parseShaderFile(vertShaderPath);
-  std::string fragCode = parseShaderFile(fragShaderPath);
-  unsigned int vertShader = createVertexShader(vertCode);
-  unsigned int fragShader = createFragmentShader(fragCode);
-  this->id = createShaderProgram(vertShader, fragShader);
+  this->id = createShaderProgramFromName(shaderName);
 }
 
 void Shader::use() { glUseProgram(this->id); }
@@ -20,6 +14,19 @@ void Shader::setMat4(const char *name, const glm::mat4 &mat4) {
     return;
   }
   glUniformMatrix4fv(matLoc, 1, GL_FALSE, glm::value_ptr(mat4));
+}
+
+unsigned int createShaderProgramFromName(const std::string &shaderName) {
+  std::string vertShaderPath = SHADER_PATH + shaderName + "/vert.glsl";
+  std::string fragShaderPath = SHADER_PATH + shaderName + "/frag.glsl";
+  std::string vertCode = parseShaderFile(vertShaderPath);
+  std::string fragCode = parseShaderFile(fragShaderPath);
+  unsigned int vertShader = createVertexShader(vertCode);
+  unsigned int fragShader = createFragmentShader(fragCode);
+  if ((fragShader == 0) || (vertShader == 0)) {
+    return 0;
+  }
+  return createShaderProgram(vertShader, fragShader);
 }
 
 unsigned int createVertexShader(const std::string &shaderSource) {
@@ -47,11 +54,11 @@ unsigned int createFragmentShader(const std::string &shaderSource) {
   glShaderSource(fragmentShader, 1, &shaderSourceC, NULL);
   glCompileShader(fragmentShader);
   int success;
-  char infoLog[32];
+  char infoLog[512];
   glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-    printf("FAILED TO COMPILE VERTEX SHADER \n");
+    printf("FAILED TO COMPILE FRAGMENT SHADER \n");
     printf("%s", infoLog);
     return 0;
   }
@@ -67,7 +74,7 @@ unsigned int createShaderProgram(unsigned int vertexShader,
   glLinkProgram(shaderProgram);
 
   int success;
-  char infoLog[64];
+  char infoLog[512];
   glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
   if (!success) {
     glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);

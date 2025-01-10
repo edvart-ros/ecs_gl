@@ -24,3 +24,5 @@ public:
   // void updateDirectionVector();
   void update(Keys &keys, Mouse &mouse);
 };
+
+extern Camera camera;
