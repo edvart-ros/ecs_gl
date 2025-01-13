@@ -23,6 +23,7 @@ std::vector<Mesh> loadMeshes(const std::string &path) {
   Assimp::Importer importer;
   std::vector<Mesh> meshes;
   const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate);
+
   if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE ||
       !scene->mRootNode) {
     printf("ASSIMP ERROR: %s \n", importer.GetErrorString());

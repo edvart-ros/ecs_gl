@@ -32,6 +32,8 @@ GLFWwindow *setupWindow(int width, int height) {
   glfwSetFramebufferSizeCallback(window, framebuffer_resize_callback);
   glfwSetCursorPosCallback(window, mouse_callback);
   glClearColor(0.1f, 0.1f, 0.1f, 0.1f);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glEnable(GL_DEPTH_TEST);
   return window;
 }

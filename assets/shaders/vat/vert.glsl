@@ -6,6 +6,7 @@ layout (location = 3) in vec2 aUv2;
 
 out vec2 uv;
 out vec2 uv2;
+out float frameNorm;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -15,28 +16,15 @@ uniform sampler2D animationMap;
 
 void main()
 {
+    uv = vec2(aUv.x, 1.0-aUv.y);
+    uv2 = vec2(aUv2.x, aUv2.y);
     float nFrames = float(textureSize(animationMap, 0).y); 
     float frameSize = 1.0 / nFrames;                      
-    vec3 m = vec3(-2.84, -3.26, -2.14);                      
-    vec3 M = vec3(3.75, 3.013, 2.29);                         
-    float frameNorm = mod(time * 0.2, 1.0);
-
-    vec3 offset = texture(animationMap, vec2(aUv2.x, frameNorm)).xyz;
-
-//   "min": {
-//     "x": -2.8395402431488037,
-//     "y": -3.258139133453369,
-//     "z": -2.130481481552124
-//   },
-//   "max": {
-//     "x": 3.747551202774048,
-//     "y": 3.012871265411377,
-//     "z": 2.292975425720215
-//   }
-
+    vec3 m = vec3(-0.78, -0.08, -0.81);                      
+    vec3 M = vec3(0.59, 1.45, 0.99);                         
+    frameNorm = mod(time * 0.15, 1.0);
+    vec3 offset = texture(animationMap, vec2(uv2.x, frameNorm)).xyz;
     offset = mix(m, M, offset);
     vec3 nPos =  offset;
-    uv = aUv;
-    uv2 = aUv2;
     gl_Position = projection * view * model * vec4(nPos, 1.0);
 }

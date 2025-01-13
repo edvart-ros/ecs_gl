@@ -9,12 +9,11 @@ uniform float time;
 in vec2 uv;
 in vec2 uv2;
 in vec3 normal;
+in float frameNorm;
 
 out vec4 FragColor;
 
 void main() {
-    // FragColor = texture(animationMap, uv);
-    
-    FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    FragColor = vec4(uv.x, uv.y, 0.0, 1.0);
+    // FragColor = vec4(uv2.x, frameNorm, 0.0, 1.0);
+    FragColor = texture(diffuseMap, uv);
 }   
