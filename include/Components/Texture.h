@@ -13,5 +13,6 @@ struct TextureMaps {
   Texture roughness;
   Texture emissive;
   Texture normal;
+  Texture animation;
   TextureMaps();
 };

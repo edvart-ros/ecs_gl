@@ -14,6 +14,16 @@ void printTransform(const Transform &transform) {
   std::cout << "x: " << transform.position.x << "\n";
   std::cout << "y: " << transform.position.y << "\n";
   std::cout << "z: " << transform.position.z << "\n";
+  std::cout << "ROTATION: \n";
+  std::cout << "w: " << transform.rotation.w << "\n";
+  std::cout << "x: " << transform.rotation.x << "\n";
+  std::cout << "y: " << transform.rotation.y << "\n";
+  std::cout << "z: " << transform.rotation.z << "\n";
+  std::cout << "SCALE: \n";
+  std::cout << "x: " << transform.scale.x << "\n";
+  std::cout << "y: " << transform.scale.y << "\n";
+  std::cout << "z: " << transform.scale.z << "\n";
+  std::cout << "-------------------" << std::endl;
 }
 
 void printVec3(const glm::vec3 &vec) {

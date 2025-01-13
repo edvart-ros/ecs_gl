@@ -16,6 +16,15 @@ void Shader::setMat4(const char *name, const glm::mat4 &mat4) {
   glUniformMatrix4fv(matLoc, 1, GL_FALSE, glm::value_ptr(mat4));
 }
 
+void Shader::setFloat(const char *name, float val) {
+  int matLoc = glGetUniformLocation(this->id, name);
+  if (matLoc == -1) {
+    // printf("ERROR: failed to get uniform location of '%s' \n", name);
+    return;
+  }
+  glUniform1f(matLoc, val);
+}
+
 unsigned int createShaderProgramFromName(const std::string &shaderName) {
   std::string vertShaderPath = SHADER_PATH + shaderName + "/vert.glsl";
   std::string fragShaderPath = SHADER_PATH + shaderName + "/frag.glsl";
@@ -36,7 +45,7 @@ unsigned int createVertexShader(const std::string &shaderSource) {
   glShaderSource(vertexShader, 1, &shaderSourceC, NULL);
   glCompileShader(vertexShader);
   int success;
-  char infoLog[32];
+  char infoLog[512];
   glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);

@@ -19,7 +19,7 @@ GLFWwindow *setupWindow(int width, int height) {
     return nullptr;
   }
   glfwMakeContextCurrent(window);
-  glfwSwapInterval(0);
+  // glfwSwapInterval(0);
 
   if (glewInit() != GLEW_OK) {
     printf("Failed to initialize glew! \n");

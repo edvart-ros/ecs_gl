@@ -25,11 +25,14 @@ Texture TextureManager::CreateTex2D(const std::string &path) {
   glGenTextures(1, &id);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, id);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                  GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+  // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+  // GL_LINEAR_MIPMAP_LINEAR);
+  // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
   int glTexFormat;
   int glDataFormat;
   switch (nrChannels) {
@@ -46,7 +49,7 @@ Texture TextureManager::CreateTex2D(const std::string &path) {
     glDataFormat = GL_RGB;
     break;
   case 4:
-    glTexFormat = GL_COMPRESSED_RGBA;
+    glTexFormat = GL_RGBA;
     glDataFormat = GL_RGBA;
     break;
   default:
@@ -59,7 +62,7 @@ Texture TextureManager::CreateTex2D(const std::string &path) {
   glTexImage2D(GL_TEXTURE_2D, 0, glTexFormat, width, height, 0, glDataFormat,
                GL_UNSIGNED_BYTE, data);
 
-  glGenerateMipmap(GL_TEXTURE_2D);
+  // glGenerateMipmap(GL_TEXTURE_2D);
   stbi_image_free(data);
   texture.id = id;
   texture.path = path;

@@ -7,6 +7,7 @@
 #include "Core/MeshManager.h"
 #include "Core/ShaderManager.h"
 #include "Core/TextureManager.h"
+#include "Logging/Logging.h"
 #include "Rendering/Camera/Camera.h"
 #include "Systems/Render.h"
 #include "entt/src/entt/entity/fwd.hpp"

@@ -1,4 +1,5 @@
 #include "MeshImporter.h"
+#include "assimp/scene.h"
 
 Mesh loadMesh(const std::string &name) {
   std::vector<Mesh> meshes = loadMeshes(MODEL_PATH + name);
@@ -64,6 +65,10 @@ Mesh processMesh(aiMesh *mesh, const aiScene *scene) {
     if (mesh->mTextureCoords[0]) {
       vertex.uv.x = mesh->mTextureCoords[0][i].x;
       vertex.uv.y = mesh->mTextureCoords[0][i].y;
+    }
+    if (mesh->mTextureCoords[1]) {
+      vertex.uv2.x = mesh->mTextureCoords[1][i].x;
+      vertex.uv2.y = mesh->mTextureCoords[1][i].y;
     }
     vertices.push_back(vertex);
   }

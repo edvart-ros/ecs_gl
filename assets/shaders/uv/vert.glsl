@@ -9,6 +9,7 @@ out vec4 wPos;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+uniform float time;
 
 void main()
 {
@@ -16,6 +17,7 @@ void main()
     mat3 normalMatrix = mat3(transpose(inverse(view * model)));
     normal = normalMatrix * aNormal;
     uv = aUv;
+    time;
     wPos = model*vec4(aPos, 1.0); 
     gl_Position = projection*view*wPos;
 }
