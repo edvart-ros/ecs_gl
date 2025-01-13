@@ -1,5 +1,10 @@
 #include "Input.h"
 
+void Mouse::resetDelta() {
+  this->deltaX = 0.0;
+  this->deltaY = 0.0;
+}
+
 void processInputs(GLFWwindow *window, Keys &keys) {
   keys.Q = (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS);
   keys.W = (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS);

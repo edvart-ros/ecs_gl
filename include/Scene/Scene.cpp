@@ -4,10 +4,10 @@ Scene::Scene() {
   registry = entt::registry();
   Shader &vatShader = shaderMan.shader("vat");
   Material vatMaterial(vatShader);
-  Mesh &characterMesh = meshMan.mesh("Character.glb");
+  Mesh &characterMesh = meshMan.mesh("jump.glb");
   auto mainChar = registry.create();
-  vatMaterial.textures.animation = texMan.tex("offsets.png");
-  vatMaterial.textures.diffuse = texMan.tex("albedo.png");
+  vatMaterial.textures.animation = texMan.tex("jumpOffsets.png");
+  vatMaterial.textures.diffuse = texMan.tex("jumpDiffuse.png");
   registry.emplace<Transform>(mainChar);
   registry.emplace<Material>(mainChar, vatMaterial);
   registry.emplace<Mesh>(mainChar, characterMesh);
@@ -39,7 +39,6 @@ void Scene::render() {
     auto &mesh = renderableView.get<Mesh>(entity);
     auto &name = renderableView.get<Name>(entity);
     mat.shader.setFloat("time", glfwGetTime());
-    std::cout << name.name << std::endl;
     RenderMesh(mesh, mat, tf, camera);
   }
   return;

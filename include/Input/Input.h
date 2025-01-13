@@ -12,10 +12,11 @@ struct Keys {
 
 struct Mouse {
   float deltaX = 0;
-  ;
   float deltaY = 0;
   float x = 0;
   float y = 0;
+
+  void resetDelta();
 };
 
 extern Keys keys;

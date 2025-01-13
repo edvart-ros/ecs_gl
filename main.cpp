@@ -16,8 +16,9 @@
 #include "entt/src/entt/entt.hpp"
 #include <CoreServices/CoreServices.h>
 #include <filesystem>
+#include <thread>
 
-GLFWwindow *window = setupWindow(1200, 900);
+GLFWwindow *window = setupWindow(1920, 1080);
 float deltaTime = 0;
 float previousTime = 0;
 Mouse mouse = Mouse();
@@ -31,14 +32,16 @@ int main() {
   Scene scene;
   while (!glfwWindowShouldClose(window)) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glfwPollEvents();
+    processInputs(window, keys);
+
     camera.update(keys, mouse);
     shaderMan.hotReload();
-
     scene.update();
-    processInputs(window, keys);
+
     glfwSwapBuffers(window);
-    glfwPollEvents();
     updateTime(deltaTime, previousTime);
+    mouse.resetDelta();
   }
   glfwTerminate();
   return 0;
