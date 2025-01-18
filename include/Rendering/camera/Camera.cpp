@@ -28,16 +28,16 @@ void Camera::update(Keys &keys, Mouse &mouse) {
 
   this->viewMatrix = glm::lookAt(this->transform.position, target, up);
 
-  this->phi -= ANGULAR_SPEED * deltaTime * mouse.deltaX;
-  this->theta += ANGULAR_SPEED * deltaTime * mouse.deltaY;
+  this->phi -= ANGULAR_SPEED * gTime.delta * mouse.deltaX;
+  this->theta += ANGULAR_SPEED * gTime.delta * mouse.deltaY;
 
   this->theta = glm::clamp(this->theta, 0.001f, glm::pi<float>() - 0.001f);
   this->phi = glm::mod(this->phi, glm::two_pi<float>());
 
-  if (keys.W)
-    this->R -= deltaTime * MOVE_SPEED;
-  if (keys.S)
-    this->R += deltaTime * MOVE_SPEED;
+  if (keys.UP)
+    this->R -= gTime.delta * MOVE_SPEED;
+  if (keys.DOWN)
+    this->R += gTime.delta * MOVE_SPEED;
 }
 
 void Camera::initViewMatrix() {

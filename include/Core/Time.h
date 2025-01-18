@@ -1,7 +1,12 @@
 #pragma once
 #include "Common.h"
 
-extern float deltaTime;
-extern float previousTime;
+struct Time {
+  float current;
+  float delta;
+  float previous;
+  Time();
+  void update();
+};
 
-void updateTime(float &deltaTime, float &previousTime);
+extern Time gTime;

@@ -1,7 +1,8 @@
 #include "Time.h"
 
-void updateTime(float &deltaTime, float &previousTime) {
-  float t = glfwGetTime();
-  deltaTime = t - previousTime;
-  previousTime = t;
+Time::Time() : current(0.0f), previous(0.0f), delta(0.000001f){};
+void Time::update() {
+  current = glfwGetTime();
+  delta = current - previous;
+  previous = current;
 }

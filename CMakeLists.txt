@@ -24,10 +24,12 @@ set(SOURCES
     ${CMAKE_SOURCE_DIR}/include/Core/TextureManager.cpp
     ${CMAKE_SOURCE_DIR}/include/Scene/Scene.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Shader.cpp
+    ${CMAKE_SOURCE_DIR}/include/Components/Animation.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Mesh.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Material.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Texture.cpp
     ${CMAKE_SOURCE_DIR}/include/Components/Transform.cpp
+    ${CMAKE_SOURCE_DIR}/include/Components/Movement.cpp
     ${CMAKE_SOURCE_DIR}/include/Systems/Render.cpp
     ${CMAKE_SOURCE_DIR}/include/Math/Geometry.cpp
     ${CMAKE_SOURCE_DIR}/include/Input/Input.cpp

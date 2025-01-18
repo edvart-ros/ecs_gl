@@ -6,3 +6,4 @@ std::filesystem::path project_root =
 std::string MODEL_PATH = project_root.string() + "/assets/models/";
 std::string SHADER_PATH = project_root.string() + "/assets/shaders/";
 std::string TEXTURE_PATH = project_root.string() + "/assets/textures/";
+std::string ANIMATION_PATH = project_root.string() + "/assets/animations/";

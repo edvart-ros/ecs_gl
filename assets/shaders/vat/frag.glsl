@@ -14,6 +14,6 @@ in float frameNorm;
 out vec4 FragColor;
 
 void main() {
-    FragColor = texture(diffuseMap, uv);
-    FragColor = vec4(uv2.x, uv.y, 1.0+sin(frameNorm*10.0), 10.0*frameNorm);
+    FragColor = vec4(uv2, frameNorm, 1.0);
+    FragColor = texture(animationMap, vec2(uv2.x, frameNorm));
 }   

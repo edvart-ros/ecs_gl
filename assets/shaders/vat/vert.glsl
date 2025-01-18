@@ -11,7 +11,12 @@ out float frameNorm;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+uniform vec3 minBounds;
+uniform vec3 maxBounds;
 uniform float time;             
+uniform float frameRate;
+uniform float startFrame;
+uniform float endFrame;
 uniform sampler2D animationMap; 
 
 void main()
@@ -19,12 +24,18 @@ void main()
     uv = vec2(aUv.x, 1.0-aUv.y);
     uv2 = vec2(aUv2.x, aUv2.y);
     float nFrames = float(textureSize(animationMap, 0).y); 
-    float frameSize = 1.0 / nFrames;                      
-    vec3 m = vec3(-0.61, -0.01, -4.95);                      
-    vec3 M = vec3(0.76, 3.29, 0.50);                         
-    frameNorm = mod(time*0.1, 1.0);
+    float frameSize = 1.0 / nFrames;
+
+    // debug start/end frame
+    startFrame; endFrame;
+    float startFrameNorm = (startFrame+0.5)/nFrames;
+    float endFrameNorm = (endFrame+0.5)/nFrames;
+    frameNorm = mix(startFrameNorm, endFrameNorm, mod(time*frameRate/nFrames, 1.0));
+
+    // debug
     vec3 offset = textureLod(animationMap, vec2(uv2.x, frameNorm), 0).xyz;
-    offset = mix(m, M, offset);
+    offset = mix(minBounds, maxBounds, offset);
     vec3 nPos =  offset;
     gl_Position = projection * view * model * vec4(nPos, 1.0);
+    
 }

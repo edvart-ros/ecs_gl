@@ -18,9 +18,8 @@
 #include <filesystem>
 #include <thread>
 
-GLFWwindow *window = setupWindow(1920, 1080);
-float deltaTime = 0;
-float previousTime = 0;
+GLFWwindow *window = setupWindow(1920, 900);
+Time gTime;
 Mouse mouse = Mouse();
 Keys keys = Keys();
 TextureManager texMan;
@@ -34,13 +33,13 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glfwPollEvents();
     processInputs(window, keys);
+    gTime.update();
 
     camera.update(keys, mouse);
     shaderMan.hotReload();
     scene.update();
 
     glfwSwapBuffers(window);
-    updateTime(deltaTime, previousTime);
     mouse.resetDelta();
   }
   glfwTerminate();

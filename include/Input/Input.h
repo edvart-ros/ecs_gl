@@ -8,6 +8,8 @@ struct Keys {
   bool A = false;
   bool S = false;
   bool D = false;
+  bool UP = false;
+  bool DOWN = false;
 };
 
 struct Mouse {

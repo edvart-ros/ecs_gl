@@ -11,6 +11,7 @@ struct Shader {
   void use();
   void setMat4(const char *name, const glm::mat4 &mat4);
   void setFloat(const char *name, const float val);
+  void setVec3(const char *name, glm::vec3 &vec);
 };
 
 unsigned int createVertexShader(const std::string &shaderSource);

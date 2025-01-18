@@ -19,6 +19,10 @@ void main() {
     if (col < 0.0001){
         discard;
     }
+    if (length(coord) < 1.0){
+        FragColor = vec4(coord.x, 0.0, coord.y, 1.0);
+        return;
+    }
     float d = length(wPos);
     float alpha = 0.3*(1.0-smoothstep(0.0, 70.0, d));
     FragColor = vec4(1.0, 1.0, 1.0, alpha);

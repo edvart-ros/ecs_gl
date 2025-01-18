@@ -12,6 +12,8 @@ void processInputs(GLFWwindow *window, Keys &keys) {
   keys.A = (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS);
   keys.S = (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS);
   keys.D = (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS);
+  keys.UP = (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS);
+  keys.DOWN = (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS);
 }
 
 void mouse_callback(GLFWwindow *window, double xpos, double ypos) {

@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "glm/gtc/type_ptr.hpp"
 
 Shader::Shader() : id(0){};
 Shader::Shader(const std::string &shaderName) {
@@ -16,13 +17,21 @@ void Shader::setMat4(const char *name, const glm::mat4 &mat4) {
   glUniformMatrix4fv(matLoc, 1, GL_FALSE, glm::value_ptr(mat4));
 }
 
-void Shader::setFloat(const char *name, float val) {
-  int matLoc = glGetUniformLocation(this->id, name);
-  if (matLoc == -1) {
-    // printf("ERROR: failed to get uniform location of '%s' \n", name);
+void Shader::setVec3(const char *name, glm::vec3 &vec) {
+  int loc = glGetUniformLocation(this->id, name);
+  if (loc == -1) {
+    printf("ERROR: failed to get uniform location of '%s' \n", name);
     return;
   }
-  glUniform1f(matLoc, val);
+  glUniform3fv(loc, 1, glm::value_ptr(vec));
+}
+void Shader::setFloat(const char *name, float val) {
+  int loc = glGetUniformLocation(this->id, name);
+  if (loc == -1) {
+    printf("ERROR: failed to get uniform location of '%s' \n", name);
+    return;
+  }
+  glUniform1f(loc, val);
 }
 
 unsigned int createShaderProgramFromName(const std::string &shaderName) {
